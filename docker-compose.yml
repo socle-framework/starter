@@ -1,0 +1,122 @@
+version: '3'
+
+services:
+
+  socle_api_service:
+    build:
+      context: .
+      dockerfile: api.dockerfile
+    container_name: socle_api
+    restart: always
+    ports:
+      - "8090:8090"
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      DB_ADDR: "postgresql://postgres:password@postgres:5432/dgdn_doccheck?sslmode=disable"
+      API_URL: "0.0.0.0:8090"
+    depends_on:
+      - postgres
+    volumes:  
+      - /bin:/bin 
+    networks:
+      - socle_network
+
+  socle_web_service:
+    build:
+      context: .
+      dockerfile: web.dockerfile
+    container_name: socle_web
+    restart: always
+    ports:
+      - "8091:8091"
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment: 
+      DATABASE_HOST: "postgres"
+      DATABASE_PORT: "5432"
+    depends_on:
+      - postgres
+    volumes:
+      - ./public/:/app/public/
+      - ./.env:/app/.env:ro 
+    networks:
+      - socle_network
+
+#  start Postgres, and ensure that data is stored to a mounted volume
+  postgres:
+    image: 'postgres:13.4'
+    ports:
+      - "5470:5432"
+    restart: always
+    environment:
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: password_password
+      POSTGRES_DB: password_db
+    volumes:
+      - ./db-data/postgres/:/var/lib/postgresql/data/
+    networks:
+      - socle_network
+
+  #  start Redis, and ensure that data is stored to a mounted volume
+  redis:
+    image: 'redis:alpine'
+    ports:
+      - "6336:6379"
+    restart: always
+    volumes:
+      - ./db-data/redis/:/data
+    networks:
+      - socle_network
+
+  #  start sftp webdav, and admin interface; ensure that data is stored to a mounted volume
+  # sftp:
+  #   image: 'drakkan/sftpgo:latest'
+  #   ports:
+  #     - "8030:8080"
+  #     - "2030:2022"
+  #     - "10030:10080"
+  #   restart: always
+  #   environment:
+  #     SFTPGO_WEBDAVD__BINDINGS__0__PORT: 10080
+  #   volumes:
+  #     - ./db-data/sftp/:/mnt/data/
+  #     - ./db-data/home/:/var/lib/sftpgo
+
+  #  start minio, and ensure that data is stored to a mounted volume
+  minio:
+    image: 'quay.io/minio/minio'
+    command: server /mnt/data --console-address ":9001"
+    ports:
+      - "8008:9000"
+      - "9009:9001"
+    restart: always
+    environment:
+      MINIO_ROOT_USER: root
+      MINIO_ROOT_PASSWORD: password
+    volumes:
+      - ./db-data/minio/:/mnt/data/
+    networks:
+      - socle_network
+
+  #  start MariaDB, and ensure that data is stored to a mounted volume
+  # mariadb:
+  #   image: 'mariadb:10.6'
+  #   ports:
+  #     - "3306:3306"
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: password
+  #     MYSQL_DATABASE: celeritas
+  #     MYSQL_USER: mariadb
+  #     MYSQL_PASSWORD: password
+
+  #   volumes:
+  #     - ./db-data/mariadb/:/var/lib/mysql
+
+
+networks:
+  socle_network:
+    driver: bridge

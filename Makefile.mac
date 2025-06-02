@@ -1,0 +1,31 @@
+BINARY_NAME=socleApp
+
+build:
+	@echo "Building Socle..."
+	@go build -o tmp/${BINARY_NAME} .
+	@echo "Socle built!"
+
+run: build
+	@echo "Starting Socle..."
+	@./tmp/${BINARY_NAME} &
+	@echo "Socle started!"
+
+clean:
+	@echo "Cleaning..."
+	@go clean
+	@rm tmp/${BINARY_NAME}
+	@echo "Cleaned!"
+
+test:
+	@echo "Testing..."
+	@go test ./...
+	@echo "Done!"
+
+start: run
+
+stop:
+	@echo "Stopping Socle..."
+	@-pkill -SIGTERM -f "./tmp/${BINARY_NAME}"
+	@echo "Stopped Socle!"
+
+restart: stop start
