@@ -3,7 +3,7 @@ packages:
   - name: "store"
     path: "./internal/store/"
     queries: "./internal/store/query/"
-    schema: "./cmd/migrate/migration/"
+    schema: "./internal/migrate/migration/"
     engine: "postgresql"
     emit_json_tags: true
     emit_prepared_queries: true

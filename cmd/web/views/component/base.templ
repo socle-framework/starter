@@ -1,0 +1,27 @@
+package component
+
+templ Base(title, csrf string) {
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+</head>
+
+<body>
+    <!-- BEGIN #app -->
+    <div id="app">
+        <!-- BEGIN #content -->
+        <div id="content">
+            { children... }
+        </div>
+        <!-- END #content -->
+    </div>
+    <!-- END #app -->
+</body>
+
+</html>
+}
