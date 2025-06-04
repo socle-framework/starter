@@ -132,7 +132,7 @@ templ:
 	templ generate
 	
 db_schema:
-	dbml2sql --postgres -o cmd/migrate/doc/schema.sql cmd/migrate/doc/schema.dbml
+	dbml2sql --postgres -o internal/store/migrate/doc/schema.sql internal/store/migrate/doc/schema.dbml
 
 ca:
 	bin/crypto create  --algo=ed25519 ca
