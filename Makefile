@@ -1,5 +1,6 @@
 WEB_BINARY_NAME=web
 API_BINARY_NAME=api
+CLI_BINARY_NAME=cli
 CRYPTO_ALGORITM=rsa
 
 build_web:
@@ -14,7 +15,7 @@ build_api:
 
 build_cli:
 	@echo "Building Cli..."
-	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o app-cli ./cmd/cli
+	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/${CLI_BINARY_NAME} ./cmd/cli
 	@echo "CLI built!"
 
 build: build_web build_api build_cli
