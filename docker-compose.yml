@@ -2,35 +2,35 @@ version: '3'
 
 services:
 
-  socle_api_service:
+  my_api_service:
     build:
       context: .
       dockerfile: api.dockerfile
-    container_name: socle_api
+    container_name: my_api
     restart: always
     ports:
-      - "8090:8090"
+      - "8091:8090"
     deploy:
       mode: replicated
       replicas: 1
     environment:
-      DB_ADDR: "postgresql://postgres:password@postgres:5432/dgdn_doccheck?sslmode=disable"
+      DB_ADDR: "postgresql://postgres_user:postgres_password@my_postgres:5432/postgres_db_name?sslmode=disable"
       API_URL: "0.0.0.0:8090"
     depends_on:
-      - postgres
+      - my_postgres
     volumes:  
       - /bin:/bin 
     networks:
-      - socle_network
+      - my_network
 
-  socle_web_service:
+  my_web_service:
     build:
       context: .
       dockerfile: web.dockerfile
-    container_name: socle_web
+    container_name: my_web
     restart: always
     ports:
-      - "8091:8091"
+      - "8093:8092"
     deploy:
       mode: replicated
       replicas: 1
@@ -43,25 +43,25 @@ services:
       - ./public/:/app/public/
       - ./.env:/app/.env:ro 
     networks:
-      - socle_network
+      - my_network
 
 #  start Postgres, and ensure that data is stored to a mounted volume
-  postgres:
+  my_postgres:
     image: 'postgres:13.4'
     ports:
       - "5470:5432"
     restart: always
     environment:
       POSTGRES_USER: postgres_user
-      POSTGRES_PASSWORD: password_password
-      POSTGRES_DB: password_db
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_DB: postgres_db_name
     volumes:
       - ./db-data/postgres/:/var/lib/postgresql/data/
     networks:
-      - socle_network
+      - my_network
 
   #  start Redis, and ensure that data is stored to a mounted volume
-  redis:
+  my_redis:
     image: 'redis:alpine'
     ports:
       - "6336:6379"
@@ -69,7 +69,7 @@ services:
     volumes:
       - ./db-data/redis/:/data
     networks:
-      - socle_network
+      - my_network
 
   #  start sftp webdav, and admin interface; ensure that data is stored to a mounted volume
   # sftp:
@@ -86,7 +86,7 @@ services:
   #     - ./db-data/home/:/var/lib/sftpgo
 
   #  start minio, and ensure that data is stored to a mounted volume
-  minio:
+  my_minio:
     image: 'quay.io/minio/minio'
     command: server /mnt/data --console-address ":9001"
     ports:
@@ -118,5 +118,5 @@ services:
 
 
 networks:
-  socle_network:
+  my_network:
     driver: bridge

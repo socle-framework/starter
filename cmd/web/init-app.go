@@ -8,8 +8,7 @@ import (
 	"log"
 )
 
-func initApplication() *application {
-
+func initApp() *application {
 	core, err := internal.Boot()
 	if err != nil {
 		log.Fatal(err)
@@ -31,7 +30,7 @@ func initApplication() *application {
 		Middleware: myMiddleware,
 	}
 
-	app.Core.Routes = app.routes()
+	app.Core.Routes.Mount("/", app.routes())
 	store := store.NewStore(app.Core.DB.Pool)
 
 	app.Middleware.Store = store

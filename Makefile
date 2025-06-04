@@ -4,7 +4,7 @@ CRYPTO_ALGORITM=rsa
 
 build_web:
 	@echo "Building Web..."
-	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/${WEB_BINARY_NAME} .
+	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/${WEB_BINARY_NAME} ./cmd/web
 	@echo "WEB built!"
 
 build_api:

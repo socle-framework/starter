@@ -19,7 +19,7 @@ type application struct {
 }
 
 func main() {
-	app := initApplication()
+	app := initApp()
 	go app.listenForShutdown()
 	err := app.Core.ListenAndServe()
 	app.Core.Log.ErrorLog.Println(err)
