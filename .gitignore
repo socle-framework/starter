@@ -1,2 +1,7 @@
 .idea
 coverage.out
+
+.env
+*.crt
+*.key
+tls.yaml

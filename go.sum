@@ -69,6 +69,10 @@ github.com/coreos/go-systemd v0.0.0-20190719114852-fd7a80b32e1f/go.mod h1:F5haX7
 github.com/cpuguy83/go-md2man v1.0.10/go.mod h1:SmD6nW6nTyfqj6ABTjUi3V3JVMnlJmwcJI5acqYI6dE=
 github.com/cpuguy83/go-md2man/v2 v2.0.6/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=
 github.com/creack/pty v1.1.7/go.mod h1:lj5s0c3V2DBrqTV7llrYr5NG6My20zk30Fl46Y7DoTY=
+github.com/danielkeho/crypto v0.0.0-20250528010612-b3a99eba412a h1:7Lg25qO+KHWw50sycky6XByYF617qRxttD9/X58CbBQ=
+github.com/danielkeho/crypto v0.0.0-20250528010612-b3a99eba412a/go.mod h1:vUHhqnHcP7b+n+4KO/JgD4xBYNqWvdmGGdq1OoWRm70=
+github.com/danielkeho/crypto v0.0.0-20250610113129-61232a384a77 h1:qN2AAA3MXiE5JdiV6zIMFkZDZoFf3odNpSVpigQ+j78=
+github.com/danielkeho/crypto v0.0.0-20250610113129-61232a384a77/go.mod h1:vUHhqnHcP7b+n+4KO/JgD4xBYNqWvdmGGdq1OoWRm70=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
@@ -192,6 +196,8 @@ github.com/gofrs/uuid v4.2.0+incompatible/go.mod h1:b2aQJv3Z4Fp6yNu3cdSllBxTCLRx
 github.com/gogo/protobuf v1.3.2 h1:Ov1cvc58UF3b5XjBnZv7+opcTcQFZebYjWzi34vdm4Q=
 github.com/gogo/protobuf v1.3.2/go.mod h1:P1XiOD3dCwIKUDQYPy72D8LYyHL2YPYrpS2s69NZV8Q=
 github.com/gogs/chardet v0.0.0-20150115103509-2404f7772561/go.mod h1:Pcatq5tYkCW2Q6yrR2VRHlbHpZ/R4/7qyL1TCF7vl14=
+github.com/golang-jwt/jwt/v5 v5.2.2 h1:Rl4B7itRWVtYIHFrSNd7vhTiz9UpLdi6gZhZ3wEeDy8=
+github.com/golang-jwt/jwt/v5 v5.2.2/go.mod h1:pqrtFR0X4osieyHYxtmOUWsAWrfe1Q5UVIyoH402zdk=
 github.com/golang-migrate/migrate/v4 v4.18.3 h1:EYGkoOsvgHHfm5U/naS1RP/6PL/Xv3S4B/swMiAmDLs=
 github.com/golang-migrate/migrate/v4 v4.18.3/go.mod h1:99BKpIi6ruaaXRM1A77eqZ+FWPQ3cfRa+ZVy5bmWMaY=
 github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b h1:VKtxabqXZkF25pY9ekfRL6a582T4P37/31XEstQ5p58=
@@ -471,8 +477,6 @@ github.com/socle-framework/render v0.0.0-20250528115623-5afdd63ba1ef h1:OjLF/rRd
 github.com/socle-framework/render v0.0.0-20250528115623-5afdd63ba1ef/go.mod h1:ugY7MR/l3IPS3CP4zL1kUJ2n53QrNvLB9NtgWkyfHWs=
 github.com/socle-framework/session v0.0.0-20250528113147-6ac46e6df8fb h1:0n9pdzA/YHvgqdFXFxnZWIVkYgy9drDQuWHxDri0M5I=
 github.com/socle-framework/session v0.0.0-20250528113147-6ac46e6df8fb/go.mod h1:FnCNrsseHniKCtn5ByhaKbw4kFCgKZhrjKfT0cxRsQQ=
-github.com/socle-framework/socle v0.1.1 h1:yQi+R8WWsJGEnXzI/Tzmqrs+X1v/tfRX03YSfdepXFM=
-github.com/socle-framework/socle v0.1.1/go.mod h1:KurpUUjg3w345PRass4nTQoBNMyEuucfB+onNiJROps=
 github.com/sourcegraph/annotate v0.0.0-20160123013949-f4cad6c6324d h1:yKm7XZV6j9Ev6lojP2XaIshpT4ymkqhMeSghO5Ps00E=
 github.com/sourcegraph/annotate v0.0.0-20160123013949-f4cad6c6324d/go.mod h1:UdhH50NIW0fCiwBSr0co2m7BnFLdv4fQTgdqdJTHFeE=
 github.com/sourcegraph/syntaxhighlight v0.0.0-20170531221838-bd320f5d308e h1:qpG93cPwA5f7s/ZPBJnGOYQNK/vKsaDaseuKT5Asee8=

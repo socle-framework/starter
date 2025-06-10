@@ -7,7 +7,7 @@ import (
 )
 
 func initApp() *application {
-	core, err := internal.Boot()
+	core, err := internal.Boot("worker")
 	if err != nil {
 		log.Fatal(err)
 	}

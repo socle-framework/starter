@@ -1,7 +1,0 @@
-Project app {
-  database_type: 'PostgreSQL'
-  Note: '''
-    # 
-  '''
-}
-  

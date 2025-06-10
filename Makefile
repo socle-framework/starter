@@ -135,10 +135,10 @@ db_schema:
 	dbml2sql --postgres -o internal/store/migrate/doc/schema.sql internal/store/migrate/doc/schema.dbml
 
 ca:
-	bin/crypto create  --algo=ed25519 ca
+	bin/crypto create  --algo=$(algo) ca
 
 cert:
-	bin/crypto --algo=ed25519 create cert \
+	bin/crypto --algo=$(algo) create cert \
 		--name $(name) \
 		--ca-key ca.key \
 		--ca-cert ca.crt \

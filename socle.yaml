@@ -1,0 +1,65 @@
+version: 1.0.0
+name: project_name
+description: "Template with chi, postgres, templ, logger"
+arch: default
+compatible_with: ["socle >= 0.1.0"]
+server:
+  name: ${SERVER_NAME}
+  address: ${SERVER_ADDR}
+store:
+  enabled : true
+defaults: 
+  http: chi 
+modules:
+  - logger
+  - auth
+  - healthcheck
+entries:
+  api:
+    enabled: true
+    port: ${API_PORT}
+    security:
+      enabled: true
+      tls:
+        strategy: self # tls strategy can be self(self-signed CA), root(signed by root CA) or le(Let's encrypt)
+        mutual: true
+        ca_cert_name: ca
+        server_cert_name: server
+        client_cert_name: client
+    multiple: true
+    # type: rest
+    types: 
+      rest:
+        enabled: true 
+        port: ${REST_API_PORT}
+        http: ~
+      graphql:
+        enabled: true
+        port: ${GRAPHQL_API_PORT}
+        http: ~
+      rpc:
+        enabled: true
+        port: ${RPC_API_PORT}
+        type: grpc # gRPC, Thrift, etc. 
+  web: 
+    enabled: true
+    port: ${WEB_PORT}
+    security:
+      enabled: true
+      tls:
+        strategy: self # tls strategy can be self(self-signed CA), root(signed by root CA) or le(Let's encrypt)
+        mutual: true
+        ca_cert_name: ca
+        server_cert_name: server
+        client_cert_name: client
+    http: ~
+    render: templ 
+  cli: 
+    enabled: true
+    type: cobra 
+  # worker:
+  #   enabled: true
+  #   type: none # Kafka, AMQP, SQS, etc.
+  # messaging:  
+  #   enabled: true
+  #   type: none # MQTT, NATS, Redis Pub/Sub, Pulsar

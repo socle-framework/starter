@@ -38,7 +38,7 @@ services:
       DATABASE_HOST: "postgres"
       DATABASE_PORT: "5432"
     depends_on:
-      - postgres
+      - my_postgres
     volumes:
       - ./public/:/app/public/
       - ./.env:/app/.env:ro 
@@ -99,7 +99,7 @@ services:
     volumes:
       - ./db-data/minio/:/mnt/data/
     networks:
-      - socle_network
+      - my_network
 
   #  start MariaDB, and ensure that data is stored to a mounted volume
   # mariadb:
