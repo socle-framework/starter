@@ -14,8 +14,6 @@ func initApp() *application {
 		log.Fatal(err)
 	}
 
-	core.AppName = "myapp"
-
 	myMiddleware := &middleware.Middleware{
 		Core: core,
 	}

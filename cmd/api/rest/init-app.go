@@ -1,39 +1,31 @@
-package main
+package rest
 
 import (
-	"app/cmd/web/handlers"
-	"app/cmd/web/middleware"
 	"app/internal"
 	"app/internal/store"
 	"log"
+	"sync"
+
+	"github.com/socle-framework/socle"
 )
 
-func initApp() *application {
-	core, err := internal.Boot("api")
+type Application struct {
+	Core  *socle.Socle
+	Store store.Store
+	wg    sync.WaitGroup
+}
+
+func InitApp() *Application {
+	core, err := internal.Boot("api/rest")
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	core.AppName = "myapp"
-
-	myMiddleware := &middleware.Middleware{
+	app := &Application{
 		Core: core,
-	}
-
-	myHandlers := &handlers.Handlers{
-		Core: core,
-	}
-
-	app := &application{
-		Core:       core,
-		Handlers:   myHandlers,
-		Middleware: myMiddleware,
 	}
 
 	app.Core.Routes.Mount("/", app.routes())
-	store := store.NewStore(app.Core.DB.Pool)
+	app.Store = store.NewStore(app.Core.DB.Pool)
 
-	app.Middleware.Store = store
-	myHandlers.Store = store
 	return app
 }

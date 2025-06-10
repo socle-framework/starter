@@ -9,7 +9,8 @@ server:
 store:
   enabled : true
 defaults: 
-  http: chi 
+  http: chi
+  crypto_algorithm: rsa
 modules:
   - logger
   - auth
