@@ -4,4 +4,5 @@ coverage.out
 .env
 *.crt
 *.key
+*.p12
 tls.yaml
